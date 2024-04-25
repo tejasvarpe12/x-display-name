@@ -19,15 +19,19 @@ function App() {
   };
 
   const handleSubmit = () => {
+    let hasError = false;
+
     if (!firstName.trim()) {
       setFirstNameError('Please enter your first name');
+      hasError = true;
     }
 
     if (!lastName.trim()) {
       setLastNameError('Please enter your last name');
+      hasError = true;
     }
 
-    if (firstName.trim() && lastName.trim()) {
+    if (!hasError) {
       const fullNameValue = `${firstName} ${lastName}`;
       setFullName(fullNameValue);
     }
@@ -51,7 +55,7 @@ function App() {
         {lastNameError && <p className="error">{lastNameError}</p>}
       </div>
 
-      <button onClick={handleSubmit} type="submit">
+      <button onClick={handleSubmit} type="button">
         Submit
       </button>
 
